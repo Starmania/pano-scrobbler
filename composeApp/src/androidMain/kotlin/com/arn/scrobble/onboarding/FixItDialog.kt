@@ -43,6 +43,7 @@ import pano_scrobbler.composeapp.generated.resources.fix_it_desc
 import pano_scrobbler.composeapp.generated.resources.fix_it_energy_title
 import pano_scrobbler.composeapp.generated.resources.fix_it_startup_title
 import pano_scrobbler.composeapp.generated.resources.fix_it_title
+import pano_scrobbler.composeapp.generated.resources.force_restart
 import pano_scrobbler.composeapp.generated.resources.kill_reason
 import pano_scrobbler.composeapp.generated.resources.not_found
 import pano_scrobbler.composeapp.generated.resources.show_persistent_noti
@@ -53,6 +54,7 @@ import pano_scrobbler.composeapp.generated.resources.special_app_access
 fun FixItDialog(
     killedReason: ScrobblerState.KilledReason?,
     onNavigate: (PanoRoute) -> Unit,
+    onForceRestart: () -> Unit,
     modifier: Modifier,
 ) {
     val context = LocalContext.current
@@ -85,6 +87,25 @@ fun FixItDialog(
         Text(
             text = stringResource(Res.string.fix_it_desc),
         )
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp)
+        ) {
+            Text(
+                text = stringResource(Res.string.force_restart),
+                style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.weight(1f)
+            )
+            OutlinedButton(
+                onClick = onForceRestart,
+                modifier = Modifier.padding(start = 8.dp)
+            ) {
+                Text(text = stringResource(Res.string.force_restart))
+            }
+        }
 
         if (!showDkmaLayout && batteryIntent == null && !canShowPersistentNoti) {
             Text(

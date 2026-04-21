@@ -634,6 +634,7 @@ object PanoNavGraph {
             onSetTitle = onSetTitle,
             navigate = navigate,
             goBack = goBack,
+            updateScrobblerState = { mainViewModel.updateScrobblerServiceState(true) },
         )
     }
 }

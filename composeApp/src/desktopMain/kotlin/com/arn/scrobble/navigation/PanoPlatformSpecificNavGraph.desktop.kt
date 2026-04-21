@@ -18,6 +18,7 @@ actual fun EntryProviderScope<PanoRoute>.panoPlatformSpecificNavGraph(
     onSetTitle: (PanoRoute, String) -> Unit,
     navigate: (PanoRoute) -> Unit,
     goBack: () -> Unit,
+    updateScrobblerState: () -> Unit,
 ) {
     @Composable
     fun onSetTitleRes(route: PanoRoute, resId: StringResource) {
